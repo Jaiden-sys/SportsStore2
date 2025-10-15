@@ -7,6 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<StoreDbContext>(opts => { opts.UseSqlServer(builder.Configuration["ConnectionStrings:SportsStoreConnection"]); 
 });
+builder.Services.AddScoped<IStoreRepository, EFStoreRepository>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
