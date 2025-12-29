@@ -2,7 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using SportsStore2.Models;
 
 var builder = WebApplication.CreateBuilder(args);
-
+builder.Services.AddHttpLogging(o => { });
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<StoreDbContext>(opts => { opts.UseSqlServer(builder.Configuration["ConnectionStrings:SportsStoreConnection"]); 
@@ -19,5 +19,6 @@ app.MapControllerRoute("pagination",
 app.MapDefaultControllerRoute();
 
 SeedData.EnsurePopulated(app);
+app.UseHttpLogging();
 
 app.Run();
