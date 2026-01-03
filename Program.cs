@@ -8,8 +8,10 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<StoreDbContext>(opts => { opts.UseSqlServer(builder.Configuration["ConnectionStrings:SportsStoreConnection"]); 
 });
 builder.Services.AddScoped<IStoreRepository, EFStoreRepository>();
-var app = builder.Build();
+builder.Services.AddRazorPages();
 
+
+var app = builder.Build();
 
 app.UseStaticFiles();
 
@@ -17,7 +19,7 @@ app.MapControllerRoute("pagination",
     "Products/Page{productPage}",
     new { Controller = "Home", action = "Index" });
 app.MapDefaultControllerRoute();
-
+app.MapRazorPages();
 SeedData.EnsurePopulated(app);
 app.UseHttpLogging();
 
