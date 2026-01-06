@@ -26,8 +26,7 @@ namespace SportsStore2.Models
                     Quantity = quantity
                 });
             }
-            else
-            {
+            else {
                 line.Quantity += quantity;
             }
         }
@@ -36,5 +35,6 @@ namespace SportsStore2.Models
            
         public decimal ComputeTotalValue() =>
             Lines.Sum(e => e.Product.Price * e.Quantity);
+        public void Clear() => Lines.Clear();
     }
 }

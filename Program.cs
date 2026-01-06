@@ -28,7 +28,7 @@ app.MapControllerRoute("category", "{category}",
     new { Controller = "Home", action = "Index", productPage = 1 });
 app.MapControllerRoute("pagination",
     "Products/Page{productPage}",
-    new { Controller = "Home", action = "Index" });
+    new { Controller = "Home", action = "Index", productPage = 1 });
 app.MapDefaultControllerRoute();
 app.MapRazorPages();
 SeedData.EnsurePopulated(app);
