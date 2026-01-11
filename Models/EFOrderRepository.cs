@@ -6,7 +6,8 @@ namespace SportsStore2.Models
     {
         private StoreDbContext context;
 
-        public EFOrderRepository(StoreDbContext ctx) { 
+        public EFOrderRepository(StoreDbContext ctx)
+        {
             context = ctx;
         }
         public IQueryable<Order> Orders => context.Orders
@@ -15,11 +16,12 @@ namespace SportsStore2.Models
         public void SaveOrder(Order order)
         {
             context.AttachRange(order.Lines.Select(l => l.Product));
-            if(order.OrderID == 0)
+            if (order.OrderID == 0)
             {
                 context.Orders.Add(order);
             }
             context.SaveChanges();
         }
-    }
+        
+    }   
 }
